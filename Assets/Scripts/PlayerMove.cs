@@ -9,16 +9,18 @@ public class PlayerMove : NetworkBehaviour {
 	void Start () {
 	}
 
+    //Temporary prefab for bullets (not client thingy)
 	public GameObject bulletPrefab;
 
-	// Good place to make initialization for local players
-	public override void OnStartLocalPlayer()
+    // Good place to make initialization for local players
+    public override void OnStartLocalPlayer()
 	{
 		GetComponent<MeshRenderer> ().material.color = Color.cyan;
-	}
 
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update () {
 		if (!isLocalPlayer)
 			return;
 
@@ -47,6 +49,9 @@ public class PlayerMove : NetworkBehaviour {
 
 		//Making bullet to move
 		bullet.GetComponent<Rigidbody> ().velocity = -transform.forward * 4;
+
+        //Trying to translate a param to the bullet
+        bullet.GetComponent<BulletBasic>().bullet_id = gameObject.GetComponent<NetworkIdentity>().netId;
 
 		NetworkServer.Spawn (bullet);
 
