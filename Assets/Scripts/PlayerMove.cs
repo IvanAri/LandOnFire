@@ -24,8 +24,8 @@ public class PlayerMove : NetworkBehaviour {
 		if (!isLocalPlayer)
 			return;
 
-		var x = Input.GetAxis ("Horizontal") * 0.1f * Time.deltaTime;
-		var z = Input.GetAxis ("Vertical") * 0.1f * Time.deltaTime;
+		var x = Input.GetAxis ("Horizontal") * Time.deltaTime;
+		var z = Input.GetAxis ("Vertical") * Time.deltaTime;
 
 		transform.Translate (x, 0, z);
 
